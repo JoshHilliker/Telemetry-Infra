@@ -1,4 +1,4 @@
-#Infrastructure Management - the start of leveraging telemetry
+#Infrastructure Management - the start of exposing telemetry
 
 Objective to discuss key use cases for Infrastructure Management & telemetry in the Cloud Service Provider. 
 
