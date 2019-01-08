@@ -14,9 +14,9 @@ cd prometheus-${RELEASE}.linux-amd64/
 sudo cp prometheus promtool /usr/local/bin/
 sudo cp -r consoles/ console_libraries/ /etc/prometheus/
 cd /etc/prometheus/
-wget https://github.com/JoshHilliker/Telemetry-Infra/blob/master/prometheus.yml
+wget https://raw.githubusercontent.com/JoshHilliker/Telemetry-Infra/master/prometheus.yml
 cd /etc/systemd/system/
-wget https://github.com/JoshHilliker/Telemetry-Infra/blob/master/prometheus.service
+wget https://raw.githubusercontent.com/JoshHilliker/Telemetry-Infra/master/prometheus.service
 rm -rf prometheus-${RELEASE}.linux-amd64.tar.gz
 rm -rf prometheus-${RELEASE}.linux-amd64/
 for i in rules rules.d files_sd; do sudo chown -R prometheus:prometheus /etc/prometheus/${i}; done
