@@ -1,5 +1,7 @@
 #! /bin/bash
-# setup for collectd initially.   
+# setup for collectd initially.
+# REFERENCE - not for production
+# pull this down first.. it will grab collectd.conf file from this repo  
 
 
 yum install epel-release.noarch
