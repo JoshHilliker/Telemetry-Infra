@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/sh
 # setup for collectd initially.
 # REFERENCE - not for production
 # pull this down first.. it will grab collectd.conf file from this repo  
@@ -8,7 +8,7 @@ yum install epel-release.noarch
 yum install collectd collectd-rrdtool 
 # NOTE:  need to create github to use for both ansible & then put collectd.conf 
 cd /etc
-wget https://github.com/JoshHilliker/Telemetry-Infra/blob/master/collectd.conf
+wget https://raw.githubusercontent.com/JoshHilliker/Telemetry-Infra/master/collectd.conf
 #Grab collectd.conf file from the github
 
 yum install git rrdtool rrdtool-devel rrdtool-perl perl-HTML-Parser perl-JSON perl-CGI-Session     
