@@ -1,10 +1,7 @@
 #!/usr/bin/sh
 yum update
-yum install epel-release
-yum install ca-certificates
-
-
-
+yum install epel-release -y
+yum install ca-certificates -y
  yum install  ca-certificates -y
  yum install  update -y
  yum install  @Development tools -y
