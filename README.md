@@ -1,4 +1,4 @@
-##**Infrastructure Management** - the start of exposing telemetry
+#**Infrastructure Management** - the start of exposing telemetry
 
 These reference files are to be used for lab use only, not for production. 
 
