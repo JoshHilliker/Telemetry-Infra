@@ -11,19 +11,19 @@ cd /etc
 wget https://raw.githubusercontent.com/JoshHilliker/Telemetry-Infra/master/collectd.conf
 #Grab collectd.conf file from the github
 
-yum install git rrdtool rrdtool-devel rrdtool-perl perl-HTML-Parser perl-JSON perl-CGI-Session     
+#  add these sections back if you are planning to do a local webserver to look at RRD files.
+#yum install git rrdtool rrdtool-devel rrdtool-perl perl-HTML-Parser perl-JSON perl-CGI-Session     
+#cd /usr/local/
+#git clone https://github.com/httpdss/collectd-web.git
+#chmod +x collectd-web/cgi-bin/graphdefs.cgi
 
-cd /usr/local/
-git clone https://github.com/httpdss/collectd-web.git
-chmod +x collectd-web/cgi-bin/graphdefs.cgi
+#sed -i -re "s/127.0.0.1/0.0.0.0/g" /usr/local/collectd-web/runserver.py
 
-sed -i -re "s/127.0.0.1/0.0.0.0/g" /usr/local/collectd-web/runserver.py
-
-mkdir -p /etc/collectd/
-echo 'datadir: "/var/lib/collectd/rrd"' > /etc/collectd/collection.conf
+#mkdir -p /etc/collectd/
+#echo 'datadir: "/var/lib/collectd/rrd"' > /etc/collectd/collection.conf
 
 systemctl enable collectd
 systemctl start collectd 
  
-python /usr/local/collectd-web/runserver.py &
+#python /usr/local/collectd-web/runserver.py &
 
