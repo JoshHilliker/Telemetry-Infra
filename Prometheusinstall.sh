@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/bash
 # Installation of Prometheus  - REFERENCE ONLY - not for production 
 
 sudo groupadd --system prometheus

@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-yum update
+yum update -y
 yum install epel-release -y
 yum install ca-certificates -y
 yum install  ca-certificates -y
