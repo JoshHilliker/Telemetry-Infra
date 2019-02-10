@@ -2,8 +2,6 @@
 yum update -y
 yum install epel-release -y
 yum install ca-certificates -y
-yum install  ca-certificates -y
- yum install update -y
  yum install @Development tools -y
  yum install psmisc -y
  yum install util-linux -y
@@ -29,4 +27,4 @@ yum install  ca-certificates -y
  yum install tree         -y                                                                                                                                            
  yum install screen      -y                                                                                                                                             
  yum install nvme-cli     -y                                                                                                                                            
- yum install perf       -y                                                                                                                                             
+ yum install perf       -y        

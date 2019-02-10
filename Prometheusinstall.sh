@@ -7,8 +7,9 @@ sudo mkdir /var/lib/prometheus
 for i in rules rules.d files_sd; do sudo mkdir -p /etc/prometheus/${i}; done
 sudo yum -y install wget
 cd /tmp
-export RELEASE=2.4.2
-wget https://github.com/prometheus/prometheus/releases/download/v${RELEASE}/prometheus-${RELEASE}.linux-amd64.tar.gz
+export RELEASE=2.7.0
+wget https://github.com/prometheus/prometheus/releases/download/v${RELEASE}/
+prometheus-${RELEASE}.linux-amd64.tar.gz
 tar xvf prometheus-${RELEASE}.linux-amd64.tar.gz
 cd prometheus-${RELEASE}.linux-amd64/
 sudo cp prometheus promtool /usr/local/bin/
@@ -23,4 +24,4 @@ for i in rules rules.d files_sd; do sudo chown -R prometheus:prometheus /etc/pro
 for i in rules rules.d files_sd; do sudo chmod -R 775 /etc/prometheus/${i}; done
 sudo chown -R prometheus:prometheus /var/lib/prometheus/
 sudo systemctl daemon-reload
-sudo systemctl start prometheus
+systemctl
