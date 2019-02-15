@@ -7,7 +7,7 @@ yum install ca-certificates -y
  yum install util-linux -y
  yum install coreutils -y
  yum install xfsprogs -y
- yum install e2fsprogs     -y                                                                                                                                           
+ yum install e2fsprogs -y                                                                                                                   
  yum install findutils     -y                                                                                                                                           
  yum install git      -y                                                                                                                                                
  yum install wget      -y                                                                                                                                               
