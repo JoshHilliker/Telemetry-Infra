@@ -1,0 +1,24 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+
+
+#Setup all telemetries Stack
+---
+- hosts: all
+  vars_files:
+    - vars/vars.yaml
+
+#- include_vars: setupvariables.yaml
+- import_playbook: tasks/sshkey.yaml
+- import_playbook: tasks/telemetry.yaml
+- import_playbook: tasks/prometheus_server.yaml
+- import_playbook: tasks/node_exporter.yaml
+- import_playbook: tasks/collectd_exporter.yaml
+- import_playbook: tasks/add_nodes.yaml
+- import_playbook: tasks/grafana.yaml
+# tasks:
+#   - include: telemetry.yaml
+#   - include: tasks/prometheus_server.yaml
+#   - include: tasks/node_exporter.yaml
+#   - include: tasks/collectd_exporter.yaml
+#      - include: tasks/add_nodes.yaml

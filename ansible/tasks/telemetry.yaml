@@ -1,0 +1,169 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+-
+ name: Telemetry-Clients
+ hosts: all
+ vars_files:
+  - vars/vars.yaml
+ tasks:
+
+#adding EPEL repo
+   - name: Add repository
+     yum_repository:
+      name: epel
+      description: EPEL YUM repo
+      baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+      gpgcheck: no
+      enabled: yes
+#-NOT WORKING  name: set enforce
+# NOT WORKING command: setenforce 0
+   - name: modprobe
+     command: modprobe br_netfilter
+#Set Time Zone
+   - name: set timezone
+     shell: timedatectl set-timezone Europe/Rome
+# Install mcelog
+   - name: Install mcelog
+     yum: name=mcelog state=installed
+     tags: mcelog
+# Install smartmontools
+   - name: Install smartmontools
+     yum: name=smartmontools state=installed
+     tags: smartmontools
+# Install sysstat
+   - name: Install sysstat
+     yum: name=sysstat state=installed
+     tags: sysstat
+# Install numactl
+   - name: Install numactl
+     yum: name=numactl state=installed
+     tags: numactl
+# Install ipmitool
+   - name: Install ipmitool
+     yum: name=ipmitool state=installed
+     tags: ipmitool
+# Install intel-cmt-cat
+   - name: Install intel-cmt-cat
+     yum: name=intel-cmt-cat state=installed
+     tags: intel-cmt-cat
+# Install collectd
+   - name: Install collectd
+     yum: name=collectd state=installed
+     tags: collectd
+   - name: Start service collectd, if not started
+     service:
+       name: collectd
+       state: started
+# Copy collectd.conf Configuration
+   - name: Copy over the collectd.conf config file
+# originale     template: src=./collectd.conf dest=/root/collectd.conf
+     template: src=./collectd.conf dest=/etc/collectd.conf
+# firewall for collectd needs to be enabled missing step.
+# Enabble collectd into SystemV services
+   - name: enable service collectd and ensure it is not masked
+     systemd:
+       name: collectd
+       enabled: yes
+       masked: no
+# Install perl-CGI-Session
+   - name: Install perl-CGI-Session
+     yum: name=perl-CGI-Session state=installed
+     tags: perl-CGI-Session
+# Install git
+   - name: Install git
+     yum: name=git state=installed
+     tags: git
+# Install rrdtool
+   - name: Install rrdtool
+     yum: name=rrdtool state=installed
+     tags: rrdtool
+# Install rrdtool-devel
+   - name: Install rrdtool-devel
+     yum: name=rrdtool-devel state=installed
+     tags: rrdtool-devel
+# Install rrdtool-perl
+   - name: Install rrdtool-perl
+     yum: name=rrdtool-perl state=installed
+     tags: rrdtool-perl
+# Install perl-HTML-Parser
+   - name: Install perl-HTML-Parser
+     yum: name=perl-HTML-Parser state=installed
+     tags: perl-HTML-Parser
+# Install perl-JSON
+   - name: Install perl-JSON
+     yum: name=perl-JSON state=installed
+     tags: perl-JSON
+# Create cellectd-web directory /usr/local/collectd-web if it does not exist
+   - file:
+       path: /usr/local/collectd-web
+       state: directory
+       mode: 0755
+# Git clone collectd web
+   - git:
+       repo: 'https://github.com/httpdss/collectd-web.git'
+       dest: /usr/local/collectd-web
+       clone: yes
+       force: yes
+       #version: latest
+# Change execute permissions to cgi file: chmod +x /usr/local/collectd-web/cgi-bin/graphdefs.cgi
+   - name: Changing perm of "/usr/local/collectd-web/cgi-bin/graphdefs.cgi", adding "+x"
+     file: dest=/usr/local/collectd-web/cgi-bin/graphdefs.cgi mode=a+x
+# Run same as sed -i -re "s/127.0.0.1/0.0.0.0/g" /usr/local/collectd-web/runserver.py
+   - replace:
+       path: /usr/local/collectd-web/runserver.py
+       regexp: '127.0.0.1'
+       replace: '0.0.0.0'
+       backup: yes
+# Create /etc/collectd directory if it does not exist
+   - file:
+       path: /etc/collectd
+       state: directory
+       mode: 0755
+# touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+   - file:
+       path: /etc/collectd/collection.conf
+       state: touch
+       mode: "u=rw,g=rw,o=rw"
+# Inserts a string into a file if it does not exist
+   - lineinfile:
+       path: /etc/collectd/collection.conf
+       regexp: 'datadir: "/var/lib/collectd/rrd"'
+       state: present
+       line: 'datadir: "/var/lib/collectd/rrd"'
+# Restart collectd service
+   - name: Restart service collectd, in all cases
+     service:
+       name: collectd
+       state: restarted
+# Open firewall ports
+   - name: open management console port
+     firewalld: port=8888/tcp zone=public permanent=true state=enabled immediate=yes
+#   - firewalld:
+#      service: https
+#      permanent: yes
+#      state: enabled
+#   - firewalld:
+#      port: 8888/tcp
+#      permanent: yes
+#      state: enabled
+# Verify core services
+#   - name: test services
+#      command: systemctl status {{ item }}
+#      with_items:
+#              - firewalld
+#              - collectd
+#              - sshd
+   - name: Check if collectd is running
+     command: systemctl status collectd
+     ignore_errors: yes
+     changed_when: false
+     register: service_collectd_status
+
+   - name: Report status of collectd
+     fail:
+       msg: |
+         Service collectd is not running.
+         Output of `systemctl status collectd`:
+         {{ service_collectd_status.stdout }}
+         {{ service_collectd_status.stderr }}
+     when: service_collectd_status | failed

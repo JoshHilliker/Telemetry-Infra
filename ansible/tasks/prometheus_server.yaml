@@ -1,0 +1,101 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+-
+ name: Prometheus Install
+ hosts: prometheus-server
+ vars_files:
+  - vars/vars.yaml
+ tasks:
+
+###########Yaml for server and node_exporter setup
+#### from https://www.howtoforge.com/tutorial/how-to-install-prometheus-and-node-exporter-on-centos-7/
+# Create User
+ - name: Add the user 'prometheus' with a specific uid and a primary group of 'admin'
+   user:
+     name: prometheus
+     shell: /bin/bash
+     comment: Prometheus Service
+ #    uid: 1040
+  #   group: admin
+## Download Prometheus Server Bits
+ - name: Download prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+   get_url:
+    #url: https://github.com/prometheus/prometheus/releases/download/v2.2.1/prometheus-2.2.1.linux-amd64.tar.gz
+    url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+    dest: /home/prometheus/
+    mode: 0660
+
+# untar prometheus bits to /home/prometheu/prometheus
+ - name: Extract prometheus-{{ prometheus_version }}.linux-amd64.tar.gz into /home/prometheus/
+   unarchive:
+    src: /home/prometheus/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+    dest: /home/prometheus/
+    remote_src: yes
+# Rename directory
+ - name: Rename prometheus-{{ prometheus_version }}.linux-amd64 DIRECTORY to prometheus DIRECTORY
+   command: mv /home/prometheus/prometheus-{{ prometheus_version }}.linux-amd64 /home/prometheus/prometheus
+
+### chown per utente Prometheus /home/prometheus/prometheus
+ - file:
+    path: /home/prometheus/prometheus
+    owner: prometheus
+    group: prometheus
+    recurse: yes
+
+
+# Create /etc/systemd/system/prometheus.service file if it does not exist
+ - file:
+       path: /etc/systemd/system/prometheus.service
+       state: touch
+       mode: "u=rwx,g=rwx,o=rwx"
+
+# Before 2.3, option 'dest' or 'name' was used instead of 'path'
+ - name: modify /etc/systemd/system/prometheus.service
+   blockinfile:
+    path: /etc/systemd/system/prometheus.service
+    block: |
+      [Unit]
+      Description=Prometheus Server
+      Documentation=https://prometheus.io/docs/introduction/overview/
+      After=network-online.target
+
+      [Service]
+      User=prometheus
+      Restart=on-failure
+
+      #Change this line if you download the
+      #Prometheus on different path user
+      ExecStart=/home/prometheus/prometheus/prometheus \
+      --config.file=/home/prometheus/prometheus/prometheus.yml \
+      --storage.tsdb.path=/home/prometheus/prometheus/data
+
+      [Install]
+      WantedBy=multi-user.target
+
+# Now reload the systemd system
+ - name: just force systemd to reread configs (2.4 and above)
+   systemd:
+     daemon_reload: yes
+
+# Start prometheus service
+ - name: start service prometheus
+   service:
+     name: prometheus
+     state: started
+
+# Enabble prometheus into SystemV services
+ - name: enable service prometheus and ensure it is not masked
+   systemd:
+     name: prometheus
+     enabled: yes
+     masked: no
+
+# Open prometheus firewall ports
+ - name: open prometheus management port
+   firewalld: port=9090/tcp zone=public permanent=true state=enabled immediate=yes
+# Check if Prometheus is running
+ - name: "Check if Prometheus Server is accessible."
+   uri:
+      url: http://{{ prometheus_srv }}:9090
+      method: GET
+      status_code: 200

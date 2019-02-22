@@ -1,0 +1,15 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+---
+prometheus_version: 2.2.1
+#prometheus_sw_url: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+grafana_srv: 172.16.0.189
+prometheus_srv: 172.16.0.190
+#monitored_Servers:
+monitored_ip01: 172.16.0.191
+monitored_ip02: 172.16.0.192
+monitored_ip03: 172.16.0.193
+
+# hosts_export: 'localhost:9090','172.16.0.189:9103','172.16.0.190:9103','172.16.0.191:9103','172.16.0.192:9103','172.16.0.193:9103'
+# '{{ grafana_srv }}:9103','{{ prometheus_srv }}:9103','{{ monitored_ip01 }}:9103','{{ monitored_ip02 }}:9103','{{ monitored_ip03 }}:9103' variable on collectd?
+# variable on node?exporter?

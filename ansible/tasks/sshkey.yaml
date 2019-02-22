@@ -1,0 +1,17 @@
+---
+- hosts: all
+#  vars_files:
+#   - vars/vars.yaml
+  tasks:
+  - name: make direcotry
+    file:
+      path: "/root/.ssh"
+      state: directory
+  - name: create empty file
+    file:
+      path: "/root/.ssh/authorized_keys"
+      state: touch
+  - name: put pubkey
+    lineinfile:
+      path: "/root/.ssh/authorized_keys"
+      line: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyx0xjQwNUjDgDZeaavJrTAzpdTwrhKmKjgV0tmsxm5DnwhyQIFLKJxD2c51KnOoXtaj2mWsFz5N9boXy0TZsf+kckfPFqNS+q/uXZcsGSQsbRStwEShZRp6rsD3kxmkdKbqy+sElVjUuFw9IsUDAzylLFYJL2VU8sw63x3fgMiLaMwWMr9R/BOmsZa3TQ8cAloZWPd6od5drhHWe7Ax+UCf++WkzHVQACKCheaC3HpGi9PjPNP57xvgPZkcXml2TDK99PCntr0fNcSs2w22Jl215llCzAiHM/8xDpJCa2ZXMgS4vdN8PaG/bFzjQAutSvCcZ2mc1nkrw9S5Swuc/l root@infra.righini.local'
