@@ -1,4 +1,4 @@
-#Mail Telemetry ver 0.3 Ansible Script.
+#Mail Telemetry ver 0.31 Ansible Script.
 #Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
 
 Instructions:
