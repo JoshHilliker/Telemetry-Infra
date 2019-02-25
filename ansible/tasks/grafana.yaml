@@ -1,0 +1,47 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+-
+ name: Grafana Install
+ hosts: grafana
+ vars_files:
+  - vars/vars.yaml
+ tasks:
+###########Yaml for grafana server setup
+#adding Grafana repo
+   - name: Add repository
+     yum_repository:
+      name: grafana
+      description: Grafana YUM repo
+      baseurl: https://packages.grafana.com/oss/rpm
+      gpgcheck: no
+      enabled: yes
+# Install Grafana
+   - name: Install Grafana
+     yum: name=grafana state=installed
+     tags: grafana
+
+# Now reload the systemd system
+   - name: reload systemd
+     command: systemctl daemon-reload
+
+# Enabble Grafana into SystemV services
+   - name: enable service Grafana and ensure it is not masked
+     systemd:
+      name: grafana-server.service
+      enabled: yes
+      masked: no
+# Start Grafana  services
+   - name: "Grafana server started"
+     service:
+      name: grafana-server
+      enabled: true
+      state: started
+# Open Grafana firewall ports
+   - name: open grafana management port
+     firewalld: port=3000/tcp zone=public permanent=true state=enabled immediate=yes
+# Check if Grafana is running
+   - name: "Check if Grafana is accessible."
+     uri:
+      url: http://{{ grafana_srv }}:3000
+      method: GET
+      status_code: 200

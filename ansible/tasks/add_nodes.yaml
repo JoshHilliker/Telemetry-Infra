@@ -1,0 +1,54 @@
+#Mail Telemetry ver 0.2 Ansible Script.
+#Developed from Marco Righini @ Intel (marco.righini@intel.com) .Thanks for the help to Josh Hilliker (josh.hilliker@intel.com).
+-
+ name: Prometheus reconfigure
+ hosts: prometheus-server
+ vars_files:
+  - vars/vars.yaml
+ tasks:
+
+  #   - lineinfile:
+#       path: /home/prometheus/prometheus/prometheus.yml
+#       regexp: '^- targets:'
+#       line: "        - targets: ['localhost:9090','172.16.0.146:9100','172.16.0.147:9100']"
+   - lineinfile:
+       path: /home/prometheus/prometheus/prometheus.yml
+       regexp: '^      - targets: '
+       insertafter: '^#- targets: '
+#       line: "      - targets: ['localhost:9090','172.16.0.189:9103','172.16.0.190:9103','172.16.0.191:9103','172.16.0.192:9103','172.16.0.193:9103']"
+       line: "      - targets: ['localhost:9090','{{ grafana_srv }}:9103','{{ prometheus_srv }}:9103','{{ monitored_ip01 }}:9103','{{ monitored_ip02 }}:9103','{{ monitored_ip03 }}:9103']"
+      # line: "      - targets: [{{ hosts_export }}]"
+#  RESTART prometheus service after config change
+   - name: Restart service prometheus, in all cases
+     service:
+      name: prometheus
+      state: restarted
+# Check if Collectd exporter service is running
+   - name: "Check if {{ prometheus_srv }} Server is responding to Collectd exporter service."
+     uri:
+      url: http://{{ prometheus_srv }}:9103/metrics
+      status_code: 200
+# Check if Collectd exporter service is running
+   - name: "Check if {{ grafana_srv }} Server is responding to Collectd exporter service."
+     uri:
+      url: http://{{ grafana_srv }}:9103/metrics
+      method: GET
+      status_code: 200
+# Check if Collectd exporter service is running
+   - name: "Check if {{ monitored_ip01 }} Server is responding to Collectd exporter service."
+     uri:
+      url: http://{{ monitored_ip01 }}:9103/metrics
+      method: GET
+      status_code: 200
+# Check if Collectd exporter service is running
+   - name: "Check if {{ monitored_ip02 }} Server is responding to Collectd exporter service."
+     uri:
+      url: http://{{ monitored_ip02 }}:9103/metrics
+      method: GET
+      status_code: 200
+# Check if Collectd exporter service is running
+   - name: "Check if {{ monitored_ip03 }} Server is responding to Collectd exporter service."
+     uri:
+      url: http://{{ monitored_ip03 }}:9103/metrics
+      method: GET
+      status_code: 200
