@@ -1,0 +1,10 @@
+[Unit]
+Description=collectd_exporter
+
+[Service]
+User=root
+ExecStart=/root/collectd_exporter  -collectd.listen-address=0.0.0.0:25826
+WorkingDirectory=/root
+
+[Install]
+WantedBy=multi-user.target
