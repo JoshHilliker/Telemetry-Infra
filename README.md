@@ -10,7 +10,7 @@ These reference files are to be used for lab use only, not for production.  I wo
 5.  **Prometheus.service** - service file required for service to run and gets pulled down from script above.  NOTE: if you have an issue at start of prometheus then I recommend cut/paste out this file & create a new service file.  I continue to fine tune this.  
 6.  **CoreMetrics** - json file for importing into grafana to show collectd metrics with prometheus.   
 
-**Key Telemetry reference links:**
+**Key Telemetry reference links:**  
 https://github.com/andikleen/pmu-tools – PMU tool that is a PERF wrapper  
 https://github.com/andikleen/mce-inject – MCE – Inject  
 https://github.com/andikleen/mcelog – MCE log information  
