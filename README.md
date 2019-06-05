@@ -20,7 +20,7 @@ https://github.com/intel/platform-resource-manager – Workload co-location Inte
 https://github.com/intel/owca/ - Orchestration aware workload collection agent  
 
 **Blogs:**  
-*Know your Data Center -  https://itpeernetwork.intel.com/know-your-data-center/
-*Collect or not collect -   https://itpeernetwork.intel.com/collect-or-not-collect/
-*Intel tools for DC Transformation -  https://itpeernetwork.intel.com/data-center-transformation/
-*Let’s rock Telemetry - https://itpeernetwork.intel.com/from-concept-to-reality-so-are-you-ready-to-rock-on-telemetry/  
+*Know your Data Center -  https://itpeernetwork.intel.com/know-your-data-center/ </br>
+*Collect or not collect -   https://itpeernetwork.intel.com/collect-or-not-collect/ </br>
+*Intel tools for DC Transformation -  https://itpeernetwork.intel.com/data-center-transformation/ </br>
+*Let’s rock Telemetry - https://itpeernetwork.intel.com/from-concept-to-reality-so-are-you-ready-to-rock-on-telemetry/  </br>
