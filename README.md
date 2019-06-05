@@ -11,7 +11,6 @@ These reference files are to be used for lab use only, not for production.  I wo
 6.  **CoreMetrics** - json file for importing into grafana to show collectd metrics with prometheus.   
 
 **Key Telemetry reference links:**
-
 https://github.com/andikleen/pmu-tools – PMU tool that is a PERF wrapper  
 https://github.com/andikleen/mce-inject – MCE – Inject  
 https://github.com/andikleen/mcelog – MCE log information  
@@ -20,7 +19,7 @@ https://github.com/intel/intel-cmt-cat – Intel® Resource Director Technology 
 https://github.com/intel/platform-resource-manager – Workload co-location Intel® Platform Resource Manager (Intel® PRM)  
 https://github.com/intel/owca/ - Orchestration aware workload collection agent  
 
-**Blogs: **
+**Blogs:**
 Know your Data Center -  https://itpeernetwork.intel.com/know-your-data-center/    
 Collect or not collect -   https://itpeernetwork.intel.com/collect-or-not-collect/  
 Intel tools for DC Transformation -  https://itpeernetwork.intel.com/data-center-transformation/   	
