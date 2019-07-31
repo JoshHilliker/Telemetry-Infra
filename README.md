@@ -1,4 +1,4 @@
-**Infrastructure Management** - Drive towards a Modern Autonomous Data Center!
+**Infrastructure Management** - Drive towards a Modern Autonomous Data Center!</br>
 The growing demand for cloud services means new opportunities for cloud service providers (CSPs) to generate and diversify revenue streams by delivering new services, faster. However, this puts added pressure on data center performance, power, and capacity. The new challenge for CSPs is then, how do they keep total cost of ownership (TCO) down while driving towards increasing revenue from these new services. The answer: Data center modernization and automation. By utilizing hardware and software telemetry, analytics, machine learning and ultimately AI, in your data center management, you can optimize and improve your power usage effectiveness (PUE), resource utilization, and performance by a significant margin. The best part is that your Intel CPUs and components already bring you one step closer to achieving this modernization.
 
 
