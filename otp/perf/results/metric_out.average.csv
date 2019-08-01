@@ -1,0 +1,62 @@
+metric_CPU operating frequency (in GHz),1.5385485693220338
+metric_CPU utilization %,4.975489046779661
+metric_CPU utilization% in kernel mode,4.9672898215254255
+metric_CPI,5.3814432042372875
+metric_L1D MPI (includes data+rfo w/ prefetches),0.01822090152542373
+metric_L1D demand data read hits per instr,0.2621126093220339
+metric_L1-I code read misses (w/ prefetches) per instr,0.019121339322033897
+metric_L2 demand data read hits per instr,0.006851676440677968
+metric_L2 MPI (includes code+data+rfo w/ prefetches),0.03281899338983051
+metric_L2 demand data read MPI,0.007118539152542372
+metric_L2 demand code MPI,0.00879974847457627
+metric_LLC data read MPI (demand+prefetch),0.006133787796610167
+metric_Average LLC data read (demand+prefetch) miss latency (in clks),219.2535119627119
+metric_Average LLC data read (demand+prefetch) miss latency (in ns),145.06807189983047
+metric_ITLB MPI,0.0001662386440677966
+metric_DTLB 2MB large page load MPI,0.00013667694915254236
+metric_DTLB store MPI,7.994050847457628e-05
+metric_uncore frequency GHz,2.042768059322034
+metric_package power (watts),97.61000000000006
+metric_DRAM power (watts),10.973389830508474
+metric_memory bandwidth read (MB/sec),653.4913985084745
+metric_memory bandwidth write (MB/sec),100.69082142372883
+metric_memory bandwidth total (MB/sec),754.1822199322033
+metric_IO_read cache miss(disk/network writes) bandwidth (MB/sec),0.02373640677966102
+metric_IO_write cache miss(disk/network reads) bandwidth (MB/sec),0.04008894915254238
+metric_TMAM_Info_CoreIPC,0.39436516542372885
+metric_TMAM_Frontend_Bound(%),41.16418134593221
+metric_TMAM_Frontend_Latency(%),35.009097431016954
+metric_TMAM_ITLB_Misses(%),0.40031992559322027
+metric_TMAM_Branch_Resteers(%),16.20086356932204
+metric_TMAM_Mispredicts_Resteers(%),0.32996231796610165
+metric_TMAM_Clears_Resteers(%),4.308341805423728
+metric_TMAM_Unknown_Branches_Resteers(%),11.18221749474576
+metric_TMAM_Frontend_Bandwidth(%),3.4867926
+metric_TMAM_Bad_Speculation(%),4.547614608813558
+metric_TMAM_Branch_Mispredicts(%),0.3310327267796611
+metric_TMAM_Branch_Clears(%),4.216581881355932
+metric_TMAM_Backend_bound(%),62.97391071101694
+metric_TMAM_Memory_Bound(%),37.02088159644068
+metric_TMAM_L1_Bound(%),28.31388928355933
+metric_TMAM_DTLB_Load(%),1.7214234288135593
+metric_TMAM_Store_Fwd_Blk(%),0.18308653135593222
+metric_TMAM_L2_Bound(%),0.49799131999999996
+metric_TMAM_L3_Bound(%),3.071709623050847
+metric_TMAM_L3_Latency(%),7.324625954745763
+metric_TMAM_L3_Bandwidth(%),0.0421673993220339
+metric_TMAM_SQ_Full(%),2.8235728406779654
+metric_TMAM_MEM_Bound(%),1.0604600947457627
+metric_TMAM_MEM_Bandwidth(%),0.0032000527118644074
+metric_TMAM_MEM_Latency(%),1.1745020766101697
+metric_TMAM_Stores_Bound(%),0.4790766932203389
+metric_TMAM_DTLB_Store(%),0.3408594530508475
+metric_TMAM_Core_Bound(%),9.240477920677966
+metric_TMAM_Divider(%),0.05671692677966103
+metric_TMAM_Ports_Utilization(%),11.338504080847457
+metric_TMAM_0_Port_Utilized(%),139.93599149847458
+metric_TMAM_1_Port_Utilized(%),13.799296013898303
+metric_TMAM_2_Port_Utilized(%),9.35657543
+metric_TMAM_3m_Ports_Utilized(%),11.325840303559325
+metric_TMAM_Retiring(%),9.12680312440678
+metric_TMAM_Base(%),4.971551488305085
+metric_TMAM_Microcode_Sequencer(%),4.1552516362711875
