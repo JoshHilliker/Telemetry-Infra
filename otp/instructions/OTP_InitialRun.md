@@ -28,10 +28,12 @@ Download the OTP Package
 ========================
 
     1.  create directory /home/otp
-    2.  git clone http://github.com/JoshHilliker/InfraMgmt/otp 
-    3.  chmod -R 775 otp.sh
-    4.  chmod -R 775 ipmi/otp_ipmi.sh
-    5.  If first run, ignore, if > 1, then remove all csv files from dstat, ipmi, & perf
+    2.  git clone http://github.com/JoshHilliker/Telemetry-Infra.git
+    3.  cp /Telemetry-Infra/otp -a /home/
+    4.  cd /home/otp
+    5.  chmod -R 775 otp.sh
+    6.  chmod -R 775 ipmi/otp_ipmi.sh
+    7.  If first run, ignore, if > 1, then remove all csv files from dstat, ipmi, & perf
 
 Package includes
 ================

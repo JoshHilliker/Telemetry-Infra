@@ -20,7 +20,7 @@ ELASTICSEARCH INSTALLATION
             type=rpm-md
 
     3) Install elasticsearch
-        sudo yum install elasticsearch
+        sudo yum install elasticsearch -y
 
     4) Modify elasticsearch YAML file
         vim /etc/elasticsearch/elasticsearch.yml
@@ -41,6 +41,7 @@ ELASTICSEARCH INSTALLATION
 
     7) Update Firewall
         sudo firewall-cmd --permanent --add-port=9200/tcp
+        sudo firewall-cmd --reload
 
     8) Check for valid Install
         curl -X GET "{CHOSEN IP}:9200"
@@ -70,7 +71,7 @@ LOGSTASH INSTALLATION
 =====================
 
     1) Install logstash
-        sudo yum install logstash
+        sudo yum install logstash -y
 
 GRAFANA INSTALLATION
 ====================
@@ -78,6 +79,7 @@ GRAFANA INSTALLATION
     1) Get RPM package for latest Grafana version and install
         wget https://dl.grafana.com/oss/release/grafana-{VERSION}.x86_64.rpm 
         sudo yum localinstall grafana-{VERSION}.x86_64.rpm
+        rm grafana-{VERSION}.x86_64.rpm
 
     2) Start Service
         sudo systemctl start grafana-server
@@ -85,6 +87,7 @@ GRAFANA INSTALLATION
 
     3) Update Firewall
         sudo firewall-cmd --permanent --add-port=3000/tcp
+        sudo firewall-cmd --reload
 
     4) Default Login
         username: admin
