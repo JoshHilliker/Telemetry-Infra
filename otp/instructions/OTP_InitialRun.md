@@ -16,13 +16,13 @@ Requirements
 
     1. perf
     2. ipmitool
-    3.  ** add dstat   (both in script & requirements)..   
+    3. dstat
     Note: Ensure no other perf sampling is being done via another monitoring or telemetry tool
 
 Install requirements
 ====================
 
-    yum install perf ipmitool -y 
+    yum install perf ipmitool dstat -y 
 
 Download the OTP Package
 ========================
@@ -45,7 +45,7 @@ Package includes
 Execution
 =========
 
-    sudo nohup otp.sh &
+    sudo nohup ./otp.sh &
 
 Notes (to be removed)
 =====================

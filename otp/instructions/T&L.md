@@ -6,8 +6,11 @@ INGESTION TYPES INTO ELG STACK (T&L)
 FIRST TIME SETUP
 ================
 
-    1) Create logstash config file
+    1) Create logstash config file or use example with modifications.
         vim /etc/logstash/conf.d/logstash-{TELEMETRY_TYPE}.conf
+        ### OR ###
+        cp /home/otp/dstat/logstash-dstat.conf /etc/logstash/conf.d/
+        ### THEN MODIFY ###
 
     2) For .csv ingestion, model as below:
         
