@@ -22,7 +22,8 @@ Requirements
 Install requirements
 ====================
 
-    yum install perf ipmitool dstat -y 
+    yum install perf ipmitool dstat -y
+    yum install vim wget -y
 
 Download the OTP Package
 ========================

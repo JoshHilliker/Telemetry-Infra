@@ -70,13 +70,14 @@ ELASTICSEARCH INSTALLATION
 LOGSTASH INSTALLATION
 =====================
 
-    1) Install logstash
+    1) Install logstash, DO NOT START SERVICE.
         sudo yum install logstash -y
 
 GRAFANA INSTALLATION
 ====================
 
-    1) Get RPM package for latest Grafana version and install
+    1) Get RPM package for latest Grafana version and install. Look on
+       https://grafana.com/grafana/download for the latest version.
         wget https://dl.grafana.com/oss/release/grafana-{VERSION}.x86_64.rpm 
         sudo yum localinstall grafana-{VERSION}.x86_64.rpm
         rm grafana-{VERSION}.x86_64.rpm
