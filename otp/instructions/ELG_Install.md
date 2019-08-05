@@ -76,7 +76,7 @@ GRAFANA INSTALLATION
 ====================
 
     1) Get RPM package for latest Grafana version and install. Look on
-       https://grafana.com/grafana/download for the latest version.
+       https://grafana.com/grafana/download for the latest version. As if 8/5/2019 version is 6.2.5-1
         wget https://dl.grafana.com/oss/release/grafana-{VERSION}.x86_64.rpm 
         sudo yum localinstall grafana-{VERSION}.x86_64.rpm
         rm grafana-{VERSION}.x86_64.rpm
