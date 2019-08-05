@@ -1,5 +1,4 @@
-This is a guide to install the ELG stack (Elasticsearch, Logstash,
-Grafana) on CentOS 7.6
+This is a guide to install the ELG stack (Elasticsearch, Logstash, Grafana) on CentOS 7.6
 
 ELASTICSEARCH INSTALLATION
 ==========================
@@ -70,7 +69,7 @@ ELASTICSEARCH INSTALLATION
 LOGSTASH INSTALLATION
 =====================
 
-    1) Install logstash, DO NOT START SERVICE.
+    1) Install logstash, DO NOT START SERVICE, INGESTION IS DONE MANUALLY.
         sudo yum install logstash -y
 
 GRAFANA INSTALLATION
