@@ -43,7 +43,7 @@ ELASTICSEARCH INSTALLATION
         sudo firewall-cmd --reload
 
     8) Check for valid Install
-        curl -X GET "{CHOSEN IP}:9200"
+        curl http://{CHOSEN IP}:9200
 
     9) The below message should be seen if functioning properly.
         {
