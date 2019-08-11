@@ -24,7 +24,8 @@ NOTES
 =====
 Report* true = recommended to leave all these as "true"
 jumbocore.json is taking both core & uncore files consolidated into one
-HardwareEvents must be called out on what you exactly want to collect.  the list above are the recommended list for Skylake, we will be updating the same for BDX & CLX.  
+HardwareEvents must be called out on what you exactly want to collect.  the list above are the recommended list for Skylake, we will be updating the same for BDX & CLX.
+**Update - 8/11 - will be updating hardare events list this week to reflect an even smaller list of "recommended" for SKX.    
 Cores - see github site for info, however I would recommend Cores "" & show all cores, then use visualization tier to aggregate, consolidate, combine.  
 
 Report*
