@@ -1,0 +1,49 @@
+grafana reporter service 
+========================
+
+Requirements
+============
+yum -y install texlive texlive-*.noarch golang 
+
+Reporter Setup
+==============
+#reference   https://github.com/IzakMarais/reporter 
+
+go get github.com/IzakMarais/reporter/...
+go install -v github.com/IzakMarais/reporter/cmd/grafana-reporter
+
+#Assign the permissions: Ref:  https://github.com/IzakMarais/reporter/issues/61
+chmod 4755 /root/go/bin/grafana-reporter
+
+#Add in Service file
+
+vim /usr/lib/systemd/system/grafana-reporter.service
+
+		[Unit]
+		Description=grafana-reporter
+
+		[Service]
+		User=root
+		Type=simple
+		Restart=on-failure
+		ExecStart=/root/go/bin/grafana-reporter -ip=[ipaddress]:3000
+		WorkingDirectory=/root/go/bin/
+		TimeoutStartSec=0
+
+		[Install]
+		WantedBy=multi-user.target
+
+Enable on startup:
+
+systemctl enable grafana-reporter
+systemctl start grafana-reporter
+
+#Grafana setup - Reference https://github.com/IzakMarais/reporter/blob/master/demo/report_v5.gif  
+#another reference site - https://github.com/IzakMarais/reporter/issues/98 
+================================================================================================
+1.  Create api-key #https://grafana.com/docs/http_api/auth/#create-api-key
+2.  add key into the string along w/ dashboard ID. 
+example - http://ipaddress:8686/api/v5/report/[dashboardid]?apitoken=<insert token here> 
+
+
+
