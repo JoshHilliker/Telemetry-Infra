@@ -1,0 +1,42 @@
+README - Intel_PMU
+
+
+Reference site
+==============
+https://github.com/collectd/collectd/blob/collectd-5.9/src/collectd.conf.pod#plugin-intel_pmu
+
+
+Sample Config block for collectd.conf file
+==========================================
+
+
+LoadPlugin intel_pmu
+<Plugin intel_pmu>
+    ReportHardwareCacheEvents true
+    ReportKernelPMUEvents true
+    ReportSoftwareEvents true
+     EventList "/root/.cache/pmu-events/jumbocore.json"
+    HardwareEvents "ARITH.DIVIDER_ACTIVE", "BACLEARS.ANY", "BR_MISP_RETIRED.ALL_BRANCHES", "CORE_POWER.LVL0_TURBO_LICENSE", "CORE_POWER.LVL1_TURBO_LICENSE", "CORE_POWER.LVL2_TURBO_LICENSE", "CPU_CLK_UNHALTED.THREAD_ANY", "CYCLE_ACTIVITY.STALLS_L1D_MISS", "CYCLE_ACTIVITY.STALLS_L2_MISS", "CYCLE_ACTIVITY.STALLS_L3_MISS", "CYCLE_ACTIVITY.STALLS_MEM_ANY", "DTLB_LOAD_MISSES.STLB_HIT", "DTLB_LOAD_MISSES.WALK_ACTIVE", "DTLB_LOAD_MISSES.WALK_COMPLETED_2M_4M", "DTLB_MISSES.WALK_COMPLETED", "DTLB_STORE_MISSES.STLB_HIT", "DTLB_STORE_MISSES.WALK_ACTIVE", "DTLB_STORE_MISSES.WALK_COMPLETED", "EXE_ACTIVITY.1_PORTS_UTIL", "EXE_ACTIVITY.2_PORTS_UTIL", "EXE_ACTIVITY.BOUND_ON_STORES", "EXE_ACTIVITY.EXE_BOUND_0_PORTS", "ICACHE_64B.IFTAG_STALL", "IDQ.DSB_UOPS", "IDQ.MITE_UOPS", "IDQ.MS_UOPS", "IDQ_UOPS_NOT_DELIVERED.CORE", "IDQ_UOPS_NOT_DELIVERED.CYCLES_0_UOPS_DELIV.CORE", "INT_MISC.CLEAR_RESTEER_CYCLES", "INT_MISC.RECOVERY_CYCLES_ANY", "ITLB_MISSES.WALK_COMPLETED", "L1D.REPLACEMENT", "L2_LINES_IN.ALL", "L2_RQSTS.ALL_CODE_RD", "L2_RQSTS.CODE_RD_MISS", "LD_BLOCKS.STORE_FORWARD", "LSD.UOPS", "MACHINE_CLEARS.COUNT", "MEM_LOAD_RETIRED.L1_HIT", "MEM_LOAD_RETIRED.L2_HIT", "MEM_LOAD_RETIRED.L2_MISS", "OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_BUFFER.SQ_FULL", "OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.DEMAND_DATA_RD_GE_6", "OFFCORE_REQUESTS_OUTSTANDING.L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.L3_MISS_DEMAND_DATA_RD_GE_6", "UNC_CHA_CLOCKTICKS", "UNC_CHA_FAST_ASSERTED.HORZ", "UNC_CHA_RxC_OCCUPANCY.IRQ", "UNC_CHA_TOR_INSERTS.IA_HIT.0x40433", "UNC_CHA_TOR_INSERTS.IA_MISS.0x12CC0233", "UNC_CHA_TOR_INSERTS.IA_MISS.0x12D40433", "UNC_CHA_TOR_INSERTS.IA_MISS.0x40433", "UNC_CHA_TOR_INSERTS.IO_MISS.0x40033", "UNC_CHA_TOR_INSERTS.IO_MISS.0x43c33", "UNC_CHA_TOR_INSERTS.IO_MISS.0x49033", "UNC_CHA_TOR_OCCUPANCY.IA_HIT.0x40433", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x12CC0233", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x12D40433", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x40433", "UNC_M_CAS_COUNT.RD", "UNC_M_CAS_COUNT.WR", "UNC_M_CLOCKTICKS", "UNC_M_RPQ_INSERTS", "UNC_M_RPQ_OCCUPANCY", "UOPS_EXECUTED.CORE_CYCLES_GE_1", "UOPS_EXECUTED.CORE_CYCLES_GE_2", "UOPS_EXECUTED.CORE_CYCLES_GE_3", "UOPS_EXECUTED.CORE_CYCLES_GE_4", "UOPS_EXECUTED.CORE_CYCLES_NONE", "UOPS_ISSUED.ANY", "UOPS_RETIRED.RETIRE_SLOTS"
+    Cores ""
+
+
+NOTES
+=====
+Report* true = recommended to leave all these as "true"
+jumbocore.json is taking both core & uncore files consolidated into one
+HardwareEvents must be called out on what you exactly want to collect.  the list above are the recommended list for Skylake, we will be updating the same for BDX & CLX.
+**Update - 8/11 - will be updating hardare events list this week to reflect an even smaller list of "recommended" for SKX.    
+Cores - see github site for info, however I would recommend Cores "" & show all cores, then use visualization tier to aggregate, consolidate, combine.  
+
+Report*
+=======
+ReportHardwareCacheEvents false|true
+Enable or disable measuring of hardware CPU cache events: - L1-dcache-loads - L1-dcache-load-misses - L1-dcache-stores - L1-dcache-store-misses - L1-dcache-prefetches - L1-dcache-prefetch-misses - L1-icache-loads - L1-icache-load-misses - L1-icache-prefetches - L1-icache-prefetch-misses - LLC-loads - LLC-load-misses - LLC-stores - LLC-store-misses - LLC-prefetches - LLC-prefetch-misses - dTLB-loads - dTLB-load-misses - dTLB-stores - dTLB-store-misses - dTLB-prefetches - dTLB-prefetch-misses - iTLB-loads - iTLB-load-misses - branch-loads - branch-load-misses
+
+ReportKernelPMUEvents false|true
+Enable or disable measuring of the following events: - cpu-cycles - instructions - cache-references - cache-misses - branches - branch-misses - bus-cycles
+
+ReportSoftwareEvents false|true
+Enable or disable measuring of software events provided by kernel: - cpu-clock - task-clock - context-switches - cpu-migrations - page-faults - minor-faults - major-faults - alignment-faults - emulation-faults
+
+
