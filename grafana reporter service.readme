@@ -1,5 +1,6 @@
 grafana reporter service 
 ========================
+Grafana reporter service enables you to take a grafana dashboard & output to a PDF file to send to peers, partners, & customers.   The challenge with visualization is how to share it effectively and this additional service provides that very function. 
 
 Requirements
 ============
@@ -7,7 +8,7 @@ yum -y install texlive texlive-*.noarch golang
 
 Reporter Setup
 ==============
-#reference   https://github.com/IzakMarais/reporter 
+#reference site from github -    https://github.com/IzakMarais/reporter 
 
 go get github.com/IzakMarais/reporter/...
 go install -v github.com/IzakMarais/reporter/cmd/grafana-reporter
@@ -38,12 +39,16 @@ Enable on startup:
 systemctl enable grafana-reporter
 systemctl start grafana-reporter
 
-#Grafana setup - Reference https://github.com/IzakMarais/reporter/blob/master/demo/report_v5.gif  
-#another reference site - https://github.com/IzakMarais/reporter/issues/98 
-================================================================================================
+Creating the API-Key
+====================
 1.  Create api-key #https://grafana.com/docs/http_api/auth/#create-api-key
 2.  add key into the string along w/ dashboard ID. 
 example - http://ipaddress:8686/api/v5/report/[dashboardid]?apitoken=<insert token here> 
 
-
-
+TIPS
+====
+*In a few examples I found there was no working directory, if you don't include that the service will not start.
+*After you install the program it will be located under /root/go/bin/grafana-reporter - you can start from there or do service model. I recommend service model. 
+*Grafana setup - Reference https://github.com/IzakMarais/reporter/blob/master/demo/report_v5.gif  
+The gif file above is a great reference of the steps you need to take to enable it & then create the right URL for the link section of the report.  Each report needs to have a unique "report" string included.  
+*Reference issue for API-KEY which helps - https://github.com/IzakMarais/reporter/issues/98 
