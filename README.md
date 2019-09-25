@@ -24,9 +24,9 @@ https://github.com/intel/ipmctl/ – ipmctl for Intel® Optane™ DC Persistent 
 https://github.com/intel/intel-cmt-cat – Intel® Resource Director Technology (Intel® RDT) usages  
 https://github.com/intel/platform-resource-manager – Workload co-location Intel® Platform Resource Manager (Intel® PRM)  
 https://github.com/intel/owca/ - Orchestration aware workload collection agent  
-https://wiki.opnfv.org/display/fastpath/Barometer+Home - Barometer - where you can see container examples of all the Intel Plugins, plus you can grab the plugins from here as well
-https://github.com/tianocore/edk2-staging/tree/UEFI_Redfish -EDKII Redfish Host Interface support
-https://github.com/intel-BMC -Intel OpenBMC Repository
+https://wiki.opnfv.org/display/fastpath/Barometer+Home - Barometer - where you can see container examples of all the Intel Plugins, plus you can grab the plugins from here as well </br>
+https://github.com/tianocore/edk2-staging/tree/UEFI_Redfish -EDKII Redfish Host Interface support </br>
+https://github.com/intel-BMC -Intel OpenBMC Repository </br>
 
 **Blogs:**  
 *Know your Data Center -  https://itpeernetwork.intel.com/know-your-data-center/ </br>
@@ -36,4 +36,3 @@ https://github.com/intel-BMC -Intel OpenBMC Repository
 
 **Notes**
 In most cases we are using collectd + Prometheus + Grafana as a telemetry reference stack. 
-  
