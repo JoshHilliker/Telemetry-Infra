@@ -1,9 +1,9 @@
 README - Intel_PMU
 
-
 Reference site
 ==============
 https://github.com/collectd/collectd/blob/collectd-5.9/src/collectd.conf.pod#plugin-intel_pmu
+https://opnfv-barometer.readthedocs.io/en/latest/release/userguide/feature.userguide.html#intel-pmu-plugin - NOTE: this is very helpful to start up with Intel_PMU plugin, pmu-tools & jevents.  I would read this page carefully & look for ways to automate it.       
 
 
 Sample Config block for collectd.conf file
@@ -12,22 +12,23 @@ Sample Config block for collectd.conf file
 
 LoadPlugin intel_pmu
 <Plugin intel_pmu>
-    ReportHardwareCacheEvents true
-    ReportKernelPMUEvents true
-    ReportSoftwareEvents true
+    ReportHardwareCacheEvents false
+    ReportKernelPMUEvents false
+    ReportSoftwareEvents false
      EventList "/root/.cache/pmu-events/jumbocore.json"
     HardwareEvents "ARITH.DIVIDER_ACTIVE", "BACLEARS.ANY", "BR_MISP_RETIRED.ALL_BRANCHES", "CORE_POWER.LVL0_TURBO_LICENSE", "CORE_POWER.LVL1_TURBO_LICENSE", "CORE_POWER.LVL2_TURBO_LICENSE", "CPU_CLK_UNHALTED.THREAD_ANY", "CYCLE_ACTIVITY.STALLS_L1D_MISS", "CYCLE_ACTIVITY.STALLS_L2_MISS", "CYCLE_ACTIVITY.STALLS_L3_MISS", "CYCLE_ACTIVITY.STALLS_MEM_ANY", "DTLB_LOAD_MISSES.STLB_HIT", "DTLB_LOAD_MISSES.WALK_ACTIVE", "DTLB_LOAD_MISSES.WALK_COMPLETED_2M_4M", "DTLB_MISSES.WALK_COMPLETED", "DTLB_STORE_MISSES.STLB_HIT", "DTLB_STORE_MISSES.WALK_ACTIVE", "DTLB_STORE_MISSES.WALK_COMPLETED", "EXE_ACTIVITY.1_PORTS_UTIL", "EXE_ACTIVITY.2_PORTS_UTIL", "EXE_ACTIVITY.BOUND_ON_STORES", "EXE_ACTIVITY.EXE_BOUND_0_PORTS", "ICACHE_64B.IFTAG_STALL", "IDQ.DSB_UOPS", "IDQ.MITE_UOPS", "IDQ.MS_UOPS", "IDQ_UOPS_NOT_DELIVERED.CORE", "IDQ_UOPS_NOT_DELIVERED.CYCLES_0_UOPS_DELIV.CORE", "INT_MISC.CLEAR_RESTEER_CYCLES", "INT_MISC.RECOVERY_CYCLES_ANY", "ITLB_MISSES.WALK_COMPLETED", "L1D.REPLACEMENT", "L2_LINES_IN.ALL", "L2_RQSTS.ALL_CODE_RD", "L2_RQSTS.CODE_RD_MISS", "LD_BLOCKS.STORE_FORWARD", "LSD.UOPS", "MACHINE_CLEARS.COUNT", "MEM_LOAD_RETIRED.L1_HIT", "MEM_LOAD_RETIRED.L2_HIT", "MEM_LOAD_RETIRED.L2_MISS", "OFFCORE_REQUESTS.L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_BUFFER.SQ_FULL", "OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.CYCLES_WITH_L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.DEMAND_DATA_RD_GE_6", "OFFCORE_REQUESTS_OUTSTANDING.L3_MISS_DEMAND_DATA_RD", "OFFCORE_REQUESTS_OUTSTANDING.L3_MISS_DEMAND_DATA_RD_GE_6", "UNC_CHA_CLOCKTICKS", "UNC_CHA_FAST_ASSERTED.HORZ", "UNC_CHA_RxC_OCCUPANCY.IRQ", "UNC_CHA_TOR_INSERTS.IA_HIT.0x40433", "UNC_CHA_TOR_INSERTS.IA_MISS.0x12CC0233", "UNC_CHA_TOR_INSERTS.IA_MISS.0x12D40433", "UNC_CHA_TOR_INSERTS.IA_MISS.0x40433", "UNC_CHA_TOR_INSERTS.IO_MISS.0x40033", "UNC_CHA_TOR_INSERTS.IO_MISS.0x43c33", "UNC_CHA_TOR_INSERTS.IO_MISS.0x49033", "UNC_CHA_TOR_OCCUPANCY.IA_HIT.0x40433", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x12CC0233", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x12D40433", "UNC_CHA_TOR_OCCUPANCY.IA_MISS.0x40433", "UNC_M_CAS_COUNT.RD", "UNC_M_CAS_COUNT.WR", "UNC_M_CLOCKTICKS", "UNC_M_RPQ_INSERTS", "UNC_M_RPQ_OCCUPANCY", "UOPS_EXECUTED.CORE_CYCLES_GE_1", "UOPS_EXECUTED.CORE_CYCLES_GE_2", "UOPS_EXECUTED.CORE_CYCLES_GE_3", "UOPS_EXECUTED.CORE_CYCLES_GE_4", "UOPS_EXECUTED.CORE_CYCLES_NONE", "UOPS_ISSUED.ANY", "UOPS_RETIRED.RETIRE_SLOTS"
     Cores ""
-
+</Plugin>
 
 NOTES
 =====
 Report* true = recommended to leave all these as "true"
 jumbocore.json is taking both core & uncore files consolidated into one
 HardwareEvents must be called out on what you exactly want to collect.  the list above are the recommended list for Skylake, we will be updating the same for BDX & CLX.
-**Update - 8/11 - will be updating hardare events list this week to reflect an even smaller list of "recommended" for SKX.    
+**Update - 9/25 - will be updating hardare events list to reflect an even smaller list of "recommended" for BDX, SKX, CLX.    
 Cores - see github site for info, however I would recommend Cores "" & show all cores, then use visualization tier to aggregate, consolidate, combine.  
-**Update - if you are running ipmi & intel_PMU plugins you must load ipmi plugin first - reference:  https://wiki.opnfv.org/display/fastpath/IPMI+plugin+HLD  
+**Update - if you are running ipmi & intel_PMU plugins you must load ipmi plugin first - reference:  https://wiki.opnfv.org/display/fastpath/IPMI+plugin+HLD 
+** if you are running into performance issues check this - https://wiki.opnfv.org/display/fastpath/Intel+PMU+Performance+considerations   
 
 Report*
 =======
