@@ -30,8 +30,3 @@ yum install collectd-smartmontools
 
 systemctl enable collectd
 systemctl start collectd
-
-
-
-
-
