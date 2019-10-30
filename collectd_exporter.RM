@@ -1,0 +1,34 @@
+Collectd_exporter - Read ME
+
+
+##collectd_exporter
+sudo wget https://github.com/prometheus/collectd_exporter/releases/download/0.2.0/collectd_exporter-0.2.0.linux-amd64.tar.gz
+sudo tar -xvf collectd_exporter-0.2.0.linux-amd64.tar.gz
+
+
+Option #1.   
+
+sudo ./collectd_exporter -collectd.listen-address=0.0.0.0:25826]
+
+Option #2.
+Utilize a service file -
+
+Ex:  https://github.com/JoshHilliker/Telemetry-Infra/blob/master/collectd_exporter.service
+
+
+Integrate w/ collectd you will need to turn on network & write_http plugin.  Code blocks below
+
+LoadPlugin network
+<Plugin network>
+  Server "server" "25826"
+</Plugin>
+
+LoadPlugin write_http
+<Plugin write_http>
+  <Node "collectd_exporter">
+    URL "http://localhost:9103/collectd-post"
+    Format "JSON"
+    StoreRates false
+  </Node>
+</Plugin>
+NOTE:  reference - https://github.com/prometheus/collectd_exporter
