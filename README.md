@@ -34,6 +34,7 @@ https://github.com/intel-BMC -Intel OpenBMC Repository </br>
 *Intel tools for DC Transformation -  https://itpeernetwork.intel.com/data-center-transformation/ </br>
 *Let’s rock Telemetry - https://itpeernetwork.intel.com/from-concept-to-reality-so-are-you-ready-to-rock-on-telemetry/  </br>
 #Let's talk about OTP - https://itpeernetwork.intel.com/from-infrastructure-analysis-to-scaling-out-telemetry-lets-talk-about-otp/ </br>
+#Intel Telemetry meets containers - https://itpeernetwork.intel.com/intel-telemetry-meets-containers/ </br>
 
 **Notes**
 In most cases we are using collectd + Prometheus + Grafana as a telemetry reference stack. 
